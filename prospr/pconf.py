@@ -1,0 +1,1 @@
+basedir = "/mnt/HDD/database/"
