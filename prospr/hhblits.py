@@ -70,7 +70,7 @@ class BlitsAndPottsRunner(threading.Thread):
 
     def run(s):
         #bin_dir = "/usr/local/bin/"
-        bin_dir = "/usr/local/package/hh-suite/3.2/bin/"
+        bin_dir = "/home/apps/hh-suite/3.2/bin/"
         hbin = bin_dir + "hhblits"
         hmake = bin_dir + "hhmake"
         hhmf = s.out_dir + s.domain + ".hhm"
@@ -101,11 +101,15 @@ class BlitsAndPottsRunner(threading.Thread):
             a2mf = s.out_dir + s.domain + ".a2m"
             matf = s.out_dir + s.domain + ".mat"
             # reformatCmd = ["/hh-suite/scripts/reformat.pl", a3mf, a2mf]
-            reformatCmd = ["/usr/local/package/hh-suite/3.2/scripts/reformat.pl", a3mf, a2mf]
+            reformatCmd = ["/home/apps/hh-suite/3.2/scripts/reformat.pl", a3mf, a2mf]
             subprocess.run(reformatCmd)
-            os.environ['LD_LIBRARY_PATH'] = '/mnt/HDD/database/MATLAB_Runtime/v94/runtime/glnxa64:/mnt/HDD/database/MATLAB_Runtime/v94/bin/glnxa64:/mnt/HDD/database/MATLAB_Runtime/v94/sys/os/glnxa64:/mnt/HDD/database/MATLAB_Runtime/v94/extern/bin/glnxa64'
-            import plmDCA_asymmetric
-            plmDCA_asymmetric.initialize_runtime(["-nodisplay"])
-            p = plmDCA_asymmetric.initialize()
-            p.plmDCA_asymmetric(a2mf, matf, multiprocessing.cpu_count(), 1, nargout=0)
+            # os.environ['LD_LIBRARY_PATH'] = '/mnt/HDD/database/MATLAB_Runtime/v94/runtime/glnxa64:/mnt/HDD/database/MATLAB_Runtime/v94/bin/glnxa64:/mnt/HDD/database/MATLAB_Runtime/v94/sys/os/glnxa64:/mnt/HDD/database/MATLAB_Runtime/v94/extern/bin/glnxa64'
+            # import plmDCA_asymmetric
+            # plmDCA_asymmetric.initialize_runtime(["-nodisplay"])
+            # p = plmDCA_asymmetric.initialize()
+            # p.plmDCA_asymmetric(a2mf, matf, multiprocessing.cpu_count(), 1, nargout=0)
+            plmDCACommand = "/home/moriwaki/prospr_mod/potts/plmDCA_asymmetric/run_plmDCA_asymmetric.sh /mnt/HDD/database/MATLAB_Runtime/v94 {0} {1} 0.2 8".format(a2mf, matf)
+            print(plmDCACommand)
+            subprocess.run(plmDCACommand, shell=True)
+            print("plmDCACommand finished.")
             print("[%s] potts completed." % datetime.now())

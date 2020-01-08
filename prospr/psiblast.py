@@ -29,11 +29,11 @@ class PsiblastManager:
     """
     def __init__(self, **kwargs):
         # defaults that can be overwritten
-        self.local_dir= pconf.basedir + "blast/nr"
+        self.local_dir= pconf.basedir + "blast/nr/"
         self.dl_server="ftp.ncbi.nlm.nih.gov"
         self.remote_dir="blast/db/"
         # self.psbin = "/usr/bin/psiblast"
-        self.psbin = "/usr/local/package/blastplus/2.9.0/bin/psiblast"
+        self.psbin = "/home/apps/blastplus/2.9.0/bin/psiblast"
         # makes any named argument a variable on this object
         self.__dict__.update(kwargs)
 

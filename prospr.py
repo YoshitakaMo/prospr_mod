@@ -65,7 +65,7 @@ def main(args):
         print('Options:\n\tinteger (0,30]')
         return
     # network定義
-    network = load_model('/home/moriwaki/prospr/opt/nn/ProSPr_' + args.network + ".nn")
+    network = load_model('/home/moriwaki/prospr_mod/nn/ProSPr_' + args.network + ".nn")
     # dist_predって何
     # dist_loss
     # domainの関数はどこで定義されている？
